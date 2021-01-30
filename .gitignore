@@ -1,0 +1,7 @@
+.idea
+.tmp
+.DS_STORE
+.env.production
+.env.develop
+.env.local
+*.exe
