@@ -1,5 +1,27 @@
 # Franigen-example
 
+## Franigen Backlog
+
+1. Test nicely
+2. General polish (for example: if query.Limit > 0 {})
+3. Separated commands
+4. File upload
+5. Datatypes
+6. Patch
+7. Make it a full extension
+8. Full architecture creation
+9. ToView creation
+10. Frontend creation
+11. Config file creation
+12. Database file creation
+13. Redis file creation
+14. Redis functions creation
+15. Kafka files creation
+16. Kafka functions creation
+17. gRPC entrypoints
+18. Router file creation
+19. Auth creation
+
 ## Setup
 
 ### Go

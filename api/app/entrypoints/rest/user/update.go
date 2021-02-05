@@ -1,11 +1,10 @@
 package user
 
 import (
-	"errors"
 	"fmt"
 	"franigen-example/api/app/entrypoints/rest/middleware/paraval"
 	contracts "franigen-example/api/core/contracts/user"
-	ucerrors "franigen-example/api/core/usecases/errors"
+	"franigen-example/api/core/usecases/errors"
 	usecases "franigen-example/api/core/usecases/user"
 	"net/http"
 
@@ -40,8 +39,8 @@ func (h *Update) Handle(c *gin.Context) {
 		var status int
 		var message string
 
-		switch {
-		case errors.Is(err, ucerrors.ErrUpdatingUser):
+		switch err {
+		case errors.ErrUpdatingUser:
 			status, message = http.StatusInternalServerError, "No se pudo actualizar al usuario"
 		default:
 			status, message = http.StatusInternalServerError, "Algo salió mal"

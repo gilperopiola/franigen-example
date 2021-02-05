@@ -1,10 +1,9 @@
 package user
 
 import (
-	"errors"
 	"franigen-example/api/app/middleware/pages"
 	contracts "franigen-example/api/core/contracts/user"
-	ucerrors "franigen-example/api/core/usecases/errors"
+	errors "franigen-example/api/core/usecases/errors"
 	usecases "franigen-example/api/core/usecases/user"
 	"net/http"
 
@@ -32,8 +31,8 @@ func (h *Select) Handle(c *gin.Context) {
 		var status int
 		var message string
 
-		switch {
-		case errors.Is(err, ucerrors.ErrGettingUsers):
+		switch err {
+		case errors.ErrGettingUsers:
 			status, message = http.StatusInternalServerError, "No se pudieron obtener los usuarios"
 		default:
 			status, message = http.StatusInternalServerError, "Algo salió mal"

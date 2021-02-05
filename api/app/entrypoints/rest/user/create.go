@@ -1,13 +1,12 @@
 package user
 
 import (
-	"errors"
 	"fmt"
-	contracts "franigen-example/api/core/contracts/user"
-	ucerrors "franigen-example/api/core/usecases/errors"
-	usecases "franigen-example/api/core/usecases/user"
-
 	"net/http"
+
+	contracts "franigen-example/api/core/contracts/user"
+	"franigen-example/api/core/usecases/errors"
+	usecases "franigen-example/api/core/usecases/user"
 
 	"github.com/gin-gonic/gin"
 )
@@ -35,9 +34,9 @@ func (h *Create) Handle(c *gin.Context) {
 		var status int
 		var message string
 
-		switch {
-		case errors.Is(err, ucerrors.ErrCreatingUser):
-			status, message = http.StatusForbidden, "No se pudo crear al usuario"
+		switch err {
+		case errors.ErrCreatingUser:
+			status, message = http.StatusInternalServerError, "No se pudo crear al usuario"
 		default:
 			status, message = http.StatusInternalServerError, "Algo salió mal"
 		}

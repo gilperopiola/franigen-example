@@ -1,9 +1,8 @@
 package user
 
 import (
-	"errors"
 	"franigen-example/api/app/entrypoints/rest/middleware/paraval"
-	ucerrors "franigen-example/api/core/usecases/errors"
+	errors "franigen-example/api/core/usecases/errors"
 	usecases "franigen-example/api/core/usecases/user"
 	"net/http"
 
@@ -24,8 +23,8 @@ func (h *Single) Handle(c *gin.Context) {
 		var status int
 		var message string
 
-		switch {
-		case errors.Is(err, ucerrors.ErrGettingUser):
+		switch err {
+		case errors.ErrGettingUser:
 			status, message = http.StatusInternalServerError, "No se pudo obtener al usuario"
 		default:
 			status, message = http.StatusInternalServerError, "Algo salió mal"
